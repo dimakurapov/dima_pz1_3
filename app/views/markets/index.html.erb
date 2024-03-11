@@ -1,0 +1,82 @@
+<h1>Список товаров</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th>Описание</th>
+      <th>Цена</th>
+      <th>Доставка</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @markets.each do |market| %>
+      <tr>
+        <td><%= market.title %></td>
+        <td><%= market.description %></td>
+        <td><%= market.price %></td>
+        <td><%= market.location %></td>
+        <td><%= link_to 'Просмотреть', market %></td>
+        <td><%= link_to 'Редактировать', edit_market_path(market) %></td>
+        <td><%= link_to 'Удалить', market, 'data-turbo-method': :delete, data: { confirm: 'Вы уверены?' } %></td>
+         <%= form_with(url: cart_add_path) do |f| %>
+      <td><%= f.hidden_field :id, value: market.id %>
+      <%= f.number_field :quantity, value: 0, min: 1 %>
+      <%= f.submit "Добавить в корзину" %></td>
+    <% end %> 
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to 'Добавить товар', new_market_path %></p>
+<%= link_to "Назад", :back %>
+
+<style>h1 {
+  font-size: 24px;
+  color: #333; /* цвет текста черный */
+  margin-bottom: 20px; /* отступ снизу */
+}
+
+/* Стили для таблицы */
+table {
+  width: 100%; /* ширина таблицы по ширине контейнера */
+  border-collapse: collapse; /* объединяем границы ячеек */
+}
+
+th, td {
+  border: 1px solid #ddd; /* граница ячеек таблицы */
+  padding: 8px; /* внутренние отступы */
+  text-align: left; /* выравнивание текста в ячейках */
+}
+
+th {
+  background-color: #f2f2f2; /* цвет фона заголовков */
+}
+
+/* Стили для ссылок в ячейках таблицы */
+td a {
+  color: #007bff; /* цвет ссылок */
+  text-decoration: none; /* убираем подчеркивание */
+  margin-right: 10px; /* отступ справа для разделения ссылок */
+}
+
+td a:hover {
+  text-decoration: underline; /* подчеркивание ссылки при наведении */
+}
+
+/* Стили для кнопки "Добавить в корзину" */
+.add-to-cart-button {
+  background-color: #4CAF50; /* цвет фона кнопки */
+  color: white; /* цвет текста кнопки */
+  padding: 8px 12px; /* внутренние отступы */
+  border: none; /* убираем границу кнопки */
+  border-radius: 4px; /* закругление углов */
+  cursor: pointer; /* изменение формы курсора при наведении */
+}
+
+.add-to-cart-button:hover {
+  background-color: #45a049; /* цвет фона кнопки при наведении */
+}</style>

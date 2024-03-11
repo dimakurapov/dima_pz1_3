@@ -1,0 +1,20 @@
+<h1>Новый товар</h1>
+
+<%= render 'form', market: @market %>
+
+<p><%= link_to 'Назад', markets_path %></p>
+<style>h1 {
+  font-size: 24px;
+  color: #333; /* цвет текста черный */
+  margin-bottom: 20px; /* отступ снизу */
+}
+
+/* Стили для ссылки "Назад" */
+p a {
+  color: #007bff; /* цвет ссылки */
+  text-decoration: none; /* убираем подчеркивание */
+}
+
+p a:hover {
+  text-decoration: underline; /* подчеркивание ссылки при наведении */
+}</style>

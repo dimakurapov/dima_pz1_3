@@ -1,0 +1,29 @@
+<h1>Ваши товары</h1>
+<% @cart.orderables.each do |orderable| %>
+  <% market = orderable.market %>
+  <p><%= market.title %> * <%= orderable.quantity %> = $<%= market.price * orderable.quantity %></p>
+
+       <%= render partial: "cart/cart" if @render_cart %>
+<% end %>
+<p>Всего: $<%= @cart.total %> </p>
+<style>
+/* Заголовок */
+h1 {
+  font-size: 24px;
+  color: #333; /* цвет текста черный */
+  margin-bottom: 20px; /* отступ снизу */
+}
+
+/* Стили для каждого товара */
+p {
+  font-size: 18px;
+  color: #666; /* цвет текста серый */
+  margin-bottom: 10px; /* отступ снизу */
+}
+
+/* Стили для общей стоимости */
+.total {
+  font-size: 20px;
+  color: #000; /* цвет текста черный */
+  font-weight: bold; /* жирный текст */
+}</style>

@@ -1,0 +1,93 @@
+<nav class="navbar">
+  <ul class="navbar-nav horizontal-nav">
+    <li class="nav-item">
+      <%= link_to "Главная", root_path, class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "Корзина", cart_path, class: "nav-link" %>
+    </li>
+    <% if current_user %>
+      <li class="nav-item">
+        <%= link_to "Профиль", markets_path, class: "nav-link" %>
+      </li>
+      <li class="home-buttons">
+        <%= link_to "Выход", destroy_user_session_path, 'data-turbo-method': :delete, class: "sign-out"%>
+      </li>
+    <% else %>
+      <li class="home-buttons">
+        <%= link_to "Sign In", new_user_session_path, class: "log-in" %>
+      </li>
+      <li class="home-buttons">
+        <%= link_to "Sign Up", new_user_registration_path, class: "sign-up" %>
+      </li>
+    <% end %>
+  </ul>
+</nav>
+<%= turbo_frame_tag "cart" do %>
+  <style>
+   /* Стили для навигационной панели */
+.navbar {
+  background-color: #333; /* Цвет фона */
+  padding: 10px; /* Внутренние отступы */
+}
+
+/* Стили для списка элементов меню */
+.navbar-nav {
+  list-style-type: none; /* Убираем маркеры списка */
+  margin: 0; /* Обнуляем внешние отступы */
+  padding: 0; /* Обнуляем внутренние отступы */
+}
+
+/* Стили для горизонтального размещения элементов меню */
+.horizontal-nav {
+  display: flex; /* Горизонтальное расположение элементов */
+}
+
+/* Стили для элементов меню */
+.nav-item {
+  margin-right: 20px; /* Отступы между элементами меню */
+}
+
+/* Стили для ссылок */
+.nav-link {
+  color: #fff; /* Белый цвет текста */
+  text-decoration: none; /* Убираем подчеркивание */
+  padding: 5px 10px; /* Внутренние отступы */
+  border-radius: 5px; /* Закругление углов */
+}
+
+.nav-link:hover {
+  background-color: #555; /* Цвет фона при наведении */
+}
+
+/* Стили для кнопок входа/выхода */
+.home-buttons {
+  margin-left: auto; /* Поместить кнопки вправо */
+}
+
+.sign-out,
+.log-in,
+.sign-up {
+  color: #fff; /* Белый цвет текста */
+  text-decoration: none; /* Убираем подчеркивание */
+  padding: 5px 10px; /* Внутренние отступы */
+  border-radius: 5px; /* Закругление углов */
+}
+
+.sign-out:hover,
+.log-in:hover,
+.sign-up:hover {
+  background-color: #555; /* Цвет фона при наведении */
+}
+  </style>
+  
+  <div class="cart-container">
+    <h1 class="cart-title">Корзина</h1>
+    <% if @cart.orderables.count > 0 %>
+      <%= render "cart/orderables" %>
+      <p class="total">Всего: <%= @cart.total %></p>
+    <% else %>
+      <p class="empty-message">У вас нет товаров</p>
+    <% end %>
+  </div>
+<% end %>

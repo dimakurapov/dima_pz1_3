@@ -1,0 +1,93 @@
+<div class="login-form-container">
+  <div class="login-form">
+    <h2>Войти</h2>
+
+    <%= render "devise/shared/errors", resource: resource %>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password, "Пароль" %><br />
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field remember-me">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me, "Запомнить меня" %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "Войти", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+    <div class="links-container">
+      <%= render "devise/shared/links" %>
+    <div>
+  </div>
+</div>
+
+<style>
+/* Стили для контейнера формы */
+.login-form-container {
+  max-width: 400px; /* Максимальная ширина контейнера */
+  margin: 0 auto; /* Центрирование контейнера */
+  padding: 20px; /* Внутренние отступы */
+  background-color: #f9f9f9; /* Цвет фона */
+  border-radius: 5px; /* Закругление углов */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень */
+}
+
+/* Стили для формы */
+.login-form {
+  text-align: center; /* Выравнивание по центру */
+}
+
+.login-form h2 {
+  font-size: 24px; /* Размер шрифта */
+  margin-bottom: 20px; /* Отступ снизу */
+}
+
+/* Стили для полей ввода */
+.field {
+  margin-bottom: 15px; /* Отступ снизу */
+}
+
+.field label {
+  font-weight: bold; /* Жирный текст */
+}
+
+/* Стили для кнопки отправки */
+.btn-primary {
+  background-color: #007bff; /* Цвет фона */
+  color: #fff; /* Цвет текста */
+  padding: 10px 20px; /* Внутренние отступы */
+  border: none; /* Убираем границу */
+  border-radius: 5px; /* Закругление углов */
+  cursor: pointer; /* Изменяем форму курсора при наведении */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* Цвет фона при наведении */
+}
+
+/* Стили для ссылок внизу формы */
+.links-container {
+  margin-top: 20px; /* Отступ сверху */
+}
+
+.links-container a {
+  color: #007bff; /* Цвет ссылок */
+  text-decoration: none; /* Убираем подчеркивание */
+}
+
+.links-container a:hover {
+  text-decoration: underline; /* Подчеркивание при наведении */
+}
+</style>

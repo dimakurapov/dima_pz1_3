@@ -1,0 +1,62 @@
+<%= form_with(model: market, url: market.persisted? ? market_path(market) : markets_path, local: true, html: { class: "market-form" }) do |form| %>
+  <% if market.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(market.errors.count, 'error') %> запретила сохранение этой записи:</h2>
+
+      <ul>
+        <% market.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :Название %>
+    <%= form.text_field :title, class: "market-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Описание %>
+    <%= form.text_area :description, class: "market-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Цена %>
+    <%= form.text_field :price, class: "market-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Доставка %>
+    <%= form.text_area :location, class: "market-input" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: "market-submit-button" %>
+  </div>
+<% end %>
+<style>.market-form {
+  max-width: 400px; /* Ширина формы */
+  margin: 0 auto; /* Центрирование формы */
+}
+
+.market-input {
+  width: 100%; /* Ширина вводных полей */
+  padding: 10px; /* Внутренние отступы */
+  margin-bottom: 15px; /* Отступ снизу для каждого вводного поля */
+  border: 1px solid #ccc; /* Граница вокруг вводных полей */
+  border-radius: 4px; /* Закругление углов */
+}
+
+.market-submit-button {
+  background-color: #4CAF50; /* Цвет фона кнопки */
+  color: white; /* Цвет текста кнопки */
+  padding: 10px 20px; /* Внутренние отступы */
+  border: none; /* Убираем границу кнопки */
+  border-radius: 4px; /* Закругление углов */
+  cursor: pointer; /* Изменение формы курсора при наведении */
+}
+
+.market-submit-button:hover {
+  background-color: #45a049; /* Цвет фона кнопки при наведении */
+}</style>

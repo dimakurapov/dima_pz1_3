@@ -1,0 +1,37 @@
+<h1>Информация о товаре</h1>
+
+<p><strong>Название:</strong> <%= @market.title %></p>
+<p><strong>Описание:</strong> <%= @market.description %></p>
+<p><strong>Цена:</strong> <%= @market.price %></p>
+<p><strong>Доставка:</strong> <%= @market.location %></p>
+
+<p><%= link_to 'Редактировать', edit_market_path(@market) %></p>
+<p><%= link_to 'Назад', markets_path %></p>
+<style>
+h1 {
+  font-size: 24px;
+  color: #333; /* черный цвет текста */
+  margin-bottom: 20px; /* отступ снизу */
+}
+
+/* Стили для информации о товаре */
+p {
+  font-size: 18px;
+  color: #666; /* темно-серый цвет текста */
+  margin-bottom: 10px; /* отступ снизу */
+}
+
+strong {
+  font-weight: bold; /* жирный текст */
+}
+
+/* Стили для ссылок */
+p a {
+  color: #007bff; /* синий цвет ссылок */
+  text-decoration: none; /* убрать подчеркивание */
+  margin-right: 10px; /* отступ справа для разделения ссылок */
+}
+
+p a:hover {
+  text-decoration: underline; /* подчеркивание ссылки при наведении */
+}</style>

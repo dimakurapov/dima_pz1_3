@@ -1,0 +1,24 @@
+<h1>Редактирование товара</h1>
+
+<%= render 'form', market: @market %>
+
+<p><%= link_to 'Просмотреть', @market %></p>
+<p><%= link_to 'Назад', markets_path %></p>
+<style>
+/* Заголовок */
+h1 {
+  font-size: 24px;
+  color: #333; /* цвет текста черный */
+  margin-bottom: 20px; /* отступ снизу */
+}
+
+/* Стили для ссылок */
+p a {
+  color: #007bff; /* цвет ссылок */
+  text-decoration: none; /* убираем подчеркивание */
+  margin-right: 10px; /* отступ справа для разделения ссылок */
+}
+
+p a:hover {
+  text-decoration: underline; /* подчеркивание ссылки при наведении */
+}</style>

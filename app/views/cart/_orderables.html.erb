@@ -1,0 +1,44 @@
+<% @cart.orderables.each do |orderable| %>
+  <% market = orderable.market %>
+  <div id="<%= "cart-#{market.id}" %>">
+    <div class="cart-item">
+      <strong>Название:</strong>
+      <%= market.title %><br>
+      <strong>Описание:</strong>
+      <%= market.description %><br>
+      <strong>Цена:</strong>
+      <%= market.price %><br>
+      <%= form_with(url: cart_add_path) do |f| %>
+        <%= f.hidden_field :id, value: market.id %>
+        <%= f.number_field :quantity, value: orderable.quantity, min: 0 %>
+        <%= f.submit "Добавить в расписание" %>
+      <% end %>
+      <%= form_with(url: cart_remove_path) do |f| %>
+        <%= f.hidden_field :id, value: orderable.id %>
+        <%= f.submit "X" %>
+      <% end %>
+      <strong>Всего к оплате:</strong>
+      <%= orderable.total %>
+    </div>
+  </div>
+<% end %>
+<style>
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 0em 5em;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+/* Стили для кнопок */
+form {
+  display: inline;
+  margin-left: 10px;
+}
+
+/* Стили для заголовков */
+strong {
+  margin-right: 5px;
+}</style>

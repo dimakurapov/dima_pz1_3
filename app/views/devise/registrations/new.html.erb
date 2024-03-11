@@ -1,0 +1,111 @@
+<div class="signup-form-container">
+  <div class="signup-form">
+    <h2>Зарегистрироваться</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field">
+        <%= f.label :first_name, "Имя" %><br />
+        <%= f.text_field :first_name,  autofocus: true, autocomplete: "first_name" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :last_name, "Фамилия" %><br />
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :role %><br />
+        <%= f.collection_select :role_ids, Role.where(name: ['admin', 'user']), :id, :name %>
+      </div>
+
+      <div class="field">
+        <%= f.label :email, "Email" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password, "Пароль" %>
+        <% if @minimum_password_length %>
+        <em>(Минимум <%= @minimum_password_length %> символов)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation, "Подтвердите пароль" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+
+      <div class="actions">
+        <div class="button-container">
+          <%= f.submit "Зарегистрироваться", class: "btn" %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="links-container">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Стили для контейнера формы */
+.signup-form-container {
+  max-width: 400px; /* Максимальная ширина контейнера */
+  margin: 0 auto; /* Центрирование контейнера */
+  padding: 20px; /* Внутренние отступы */
+  background-color: #f9f9f9; /* Цвет фона */
+  border-radius: 5px; /* Закругление углов */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень */
+}
+
+/* Стили для формы */
+.signup-form {
+  text-align: center; /* Выравнивание по центру */
+}
+
+.signup-form h2 {
+  font-size: 24px; /* Размер шрифта */
+  margin-bottom: 20px; /* Отступ снизу */
+}
+
+/* Стили для полей ввода */
+.field {
+  margin-bottom: 15px; /* Отступ снизу */
+}
+
+.field label {
+  font-weight: bold; /* Жирный текст */
+}
+
+/* Стили для кнопки отправки */
+.btn {
+  background-color: #007bff; /* Цвет фона */
+  color: #fff; /* Цвет текста */
+  padding: 10px 20px; /* Внутренние отступы */
+  border: none; /* Убираем границу */
+  border-radius: 5px; /* Закругление углов */
+  cursor: pointer; /* Изменяем форму курсора при наведении */
+}
+
+.btn:hover {
+  background-color: #0056b3; /* Цвет фона при наведении */
+}
+
+/* Стили для ссылок внизу формы */
+.links-container {
+  margin-top: 20px; /* Отступ сверху */
+}
+
+.links-container a {
+  color: #007bff; /* Цвет ссылок */
+  text-decoration: none; /* Убираем подчеркивание */
+}
+
+.links-container a:hover {
+  text-decoration: underline; /* Подчеркивание при наведении */
+}
+</style>
